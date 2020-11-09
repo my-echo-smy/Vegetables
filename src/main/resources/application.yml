@@ -20,8 +20,8 @@ fastdfs:
     host: http://192.168.91.128/
 
 aliyun:
-  access-key-id: LTAILRbN786aE1W4
-  access-key-secret: GQ5msgueKw6xccaBqWzKG3dOf8gMiN
+  access-key-id: LTAI4G2QqRwkyY9avJjdog3z
+  access-key-secret: pCWcTAZPjknYg8BojMdVnF774T8Yos
   oss:
     endpoint: http://oss-cn-beijing.aliyuncs.com
-    bucket-name: haitouhui-crm
+    bucket-name: vegetables-oss

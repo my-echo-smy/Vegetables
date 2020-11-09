@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with htouhui.com.
  */
-package com.example.vegetables.util;
+package com.example.vegetables.common.oss;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.CopyObjectResult;
@@ -23,8 +23,7 @@ import java.net.URL;
 import java.util.Date;
 
 /**
- * @author redstarstar, star.hong@gmail.com
- * @version 1.0
+ * @author SMy
  */
 public class SimpleOSSClient {
 

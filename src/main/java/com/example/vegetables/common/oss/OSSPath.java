@@ -5,14 +5,13 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with haitouhui.com.
  */
-package com.example.vegetables.util;
+package com.example.vegetables.common.oss;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
- * @author redstarstar, star.hong@gmail.com
- * @version 1.0
+ * @author SMy
  */
 public class OSSPath {
 
