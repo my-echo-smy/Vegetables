@@ -18,3 +18,10 @@ server:
 fastdfs:
   nginx:
     host: http://192.168.91.128/
+
+aliyun:
+  access-key-id: LTAILRbN786aE1W4
+  access-key-secret: GQ5msgueKw6xccaBqWzKG3dOf8gMiN
+  oss:
+    endpoint: http://oss-cn-beijing.aliyuncs.com
+    bucket-name: haitouhui-crm

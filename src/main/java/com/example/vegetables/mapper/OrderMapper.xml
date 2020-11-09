@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vegetables.mapper.OrderMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.example.vegetables.model.Order" >
+        <id column="id" property="id" />
+        <result column="order_no" property="orderNo" />
+        <result column="user_id" property="userId" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="pay_time" property="payTime" />
+        <result column="pick_up_id" property="pickUpId"  />
+        <result column="pick_Up_time" property="pickUpTime" />
+        <result column="total_price" property="totalPrice"   />
+    </resultMap>
+</mapper>

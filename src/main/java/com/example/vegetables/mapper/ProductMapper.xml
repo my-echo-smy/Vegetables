@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.vegetables.mapper.ProductMapper">
 
+    <resultMap id="BaseResultMap" type="com.example.vegetables.model.Product">
+        <result column="name" property="name" />
+        <result column="content" property="content" />
+        <result column="title" property="title" />
+        <result column="price" property="price" />
+        <result column="number" property="number"/>
+        <result column="type" property="type"/>
+        <result column="picture" property="picture" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="pick_up_Id" property="pickUpId" />
+        <result column="sold_out_number" property="soldOutNumber"/>
+    </resultMap>
 
+    <select id="selectByPickUp" resultMap="BaseResultMap">
+
+    </select>
 
 </mapper>

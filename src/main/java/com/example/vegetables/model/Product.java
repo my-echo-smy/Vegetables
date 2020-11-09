@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,13 +13,17 @@ import java.util.Date;
  */
 @Data
 @TableName("product")
-public class Product {
+public class Product implements Serializable {
     @TableId(type = IdType.UUID)
     private Integer id;
     /**
      * 名称
      */
     private String name;
+    /**
+     * 副标题
+     */
+    private String title;
     /**
      * 商品描述
      */
@@ -41,6 +46,14 @@ public class Product {
      * 商品图片
      */
     private String picture;
+    /**
+     * 自提点id
+     */
+    private String pickUpId;
+    /**
+     * 已售
+     */
+    private String soldOutNumber;
 
     /**
      * 创建时间
