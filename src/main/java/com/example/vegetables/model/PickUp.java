@@ -10,10 +10,10 @@ import java.util.Date;
  * 自提店信息
  */
 @Data
-@TableName("user")
+@TableName("pick_up")
 public class PickUp {
     @TableId(type = IdType.UUID)
-    private Integer id;
+    private String id;
     /**
      * 社区名称
      */

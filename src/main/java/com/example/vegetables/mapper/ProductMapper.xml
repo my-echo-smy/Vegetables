@@ -12,12 +12,23 @@
         <result column="picture" property="picture" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
-        <result column="pick_up_Id" property="pickUpId" />
+        <result column="pick_up_id" property="pickUpId" />
+        <result column="ststus" property="status" />
         <result column="sold_out_number" property="soldOutNumber"/>
     </resultMap>
 
     <select id="selectByPickUp" resultMap="BaseResultMap">
-
+        Select * from  product where  pick_up_id =#{pick_up_id} and status = '1'
     </select>
-
+    <insert id="insertProduct" parameterType="com.example.vegetables.model.Product" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into product (Id, name, content,
+      title, price, number, 
+      type, picture,  pick_up_Id, sold_out_number,
+      status)
+    values (#{id}, #{name}, #{content}, 
+      #{title}, #{price}, #{number}, 
+      #{type}, #{picture}, #{pickUpId}, #{soldOutNumber},
+      #{status})
+  </insert>
 </mapper>

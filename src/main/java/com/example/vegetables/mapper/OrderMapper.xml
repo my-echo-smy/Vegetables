@@ -3,7 +3,7 @@
 <mapper namespace="com.example.vegetables.mapper.OrderMapper">
 
 
-    <resultMap id="BaseResultMap" type="com.example.vegetables.model.Order" >
+    <resultMap id="BaseResultMap" type="com.example.vegetables.model.MallOrder" >
         <id column="id" property="id" />
         <result column="order_no" property="orderNo" />
         <result column="user_id" property="userId" />
@@ -14,4 +14,8 @@
         <result column="pick_Up_time" property="pickUpTime" />
         <result column="total_price" property="totalPrice"   />
     </resultMap>
+    <select id="selectByOrderNo" resultMap="BaseResultMap">
+        select * from mall_order
+        where order_no =#{order_no}
+    </select>
 </mapper>

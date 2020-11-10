@@ -13,25 +13,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * <p>
- * cn.gwssi.enterprise.common.utils
- * </p>
- * <p>
- * File: DateUtil.java 创建时间: 2019-12-30 14:37:48
- * </p>
- * <p>
- * Title: []_[]
- * </p>
- * <p>
- * Description: 日期工具类
- * </p>
- * <p>
- * 模块: -
- * </p>
- *
- * @author liu.yonghui
- * @version 1.0
- * @history 修订历史（历次修订内容、修订人、修订时间等）
+ * smy
  */
 public class DateUtil {
     /**
@@ -84,7 +66,29 @@ public class DateUtil {
         sb.append(strDate);
         return sb.toString();
     }
+    /**
+     * 获取某日期的年
+     * @param date
+     * @return
+     */
+    public static Integer getYY(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year=cal.get(Calendar.YEAR);//获取时
+        return year;
+    }
 
+    /**
+     * 获取某日期的月
+     * @param date
+     * @return
+     */
+    public static Integer getMonth(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int month=cal.get(Calendar.MONTH);//获取时
+        return month+1;
+    }
     /**
      * 两个时间相差几分钟
      * @param start

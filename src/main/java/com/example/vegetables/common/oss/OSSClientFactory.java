@@ -76,7 +76,7 @@ public class OSSClientFactory {
     }
 
     public enum Directory {
-        TEMPORARY("temp"), FORMAL("formal");
+        PICTURE("PICTURE"), TEMPORARY("temp"), FORMAL("formal");
 
         private String prefix;
 
@@ -90,11 +90,7 @@ public class OSSClientFactory {
     }
 
     public enum DataType {
-        USER("user"), ORDER("order"), FEEDBACK("feedback"), CPS("cps"), STATISTICS("statistics"), PAYMENT("payment"), CONTRACT("contract"),COSTING("costing"),INTEREST("interest"),
-        KZ_GIFT("gift"),KZ_POINT("point"),CONVERSION("conversion"),ELECTRICITY("electricity"),REGISTER_NO_OPEN("registerNoOpen"),OPEN_NOT_INVEST("openNotInvest"),LOSS("loss"),REPAY("repay"),LOAN_REPAY("LoanRepay"),
-        ORDER_MANAGEMENT("orderManagement"),EXCHANGE("exchange"),INVEST("invest"),TICKET_PICTURE("ticketPicture"),LOAN_INFORMATION("loanInformation"),POINT_RECORDS("point_records"),DAILY_EXIT("daily_exit"),
-        LARGE_WITHDRAWAL("large_withdrawal"), LEO_REPAY_REINVEST("leo_repay_reinvest"),LOAN_STATISTICS("loanStatistics"),PULL_NEW("pullNew"),CHANNEL_INVEST("channelInvest"),CHANNEL_USER_DATA("channelUserData"),
-        LEO_ACTUAL_EXIT("leo_actual_exit"),QUANTIZATION_REINVEST("quantization_reinvest"),OLD_INVITE_NEW_AWARD("old_invite_new_award"),CHANGE_TREND("changeTrend");
+        picture("picture"), USER("order") ;
 
         private final String prefix;
 

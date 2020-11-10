@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 
 /**
@@ -44,7 +43,7 @@ public class DemoController {
     }
 
     @ResponseBody
-    @ApiOperation(value = "单一文件上传", notes = "")
+    @ApiOperation(value = "单一文件上传测试demo", notes = "")
     @PostMapping(value = "uploadFile")
     public ResponseData uploadFile(HttpServletRequest request) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -54,4 +53,9 @@ public class DemoController {
         }
         return new SuccessResponseData(productService.uploadFile(file));
     }
+
+
+
+
+
 }

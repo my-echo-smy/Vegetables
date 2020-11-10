@@ -12,10 +12,14 @@ import java.util.Date;
  * 订单详情表
  */
 @Data
-@TableName("user")
+@TableName("order_item")
 public class OrderItem {
     @TableId(type = IdType.UUID)
-    private Integer id;
+    private String id;
+    /**
+     * 自提点id
+     */
+    private String pickUpId;
     /**
      * 订单号
      */

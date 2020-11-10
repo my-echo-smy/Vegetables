@@ -1,75 +1,132 @@
 package com.example.vegetables.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-
-import com.example.vegetables.common.oss.OSSPath;
-import com.example.vegetables.common.oss.OSSPathBuilder;
-import com.example.vegetables.common.oss.SimpleOSSClient;
+import com.example.vegetables.common.ErrorResponseData;
+import com.example.vegetables.mapper.PickUpMapper;
 import com.example.vegetables.mapper.ProductMapper;
 import com.example.vegetables.model.Product;
-import com.example.vegetables.model.dto.ProductDto;
 import com.example.vegetables.service.ProductService;
-
-import com.example.vegetables.util.DateUtil;
+import com.example.vegetables.util.OSSUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.vegetables.common.oss.OSSClientFactory;
+
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Date;
 import java.util.List;
+
+import static com.example.vegetables.common.oss.OSSClientFactory.DataType.picture;
+
 @Slf4j
 @Service
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements ProductService {
     @Autowired
     OSSClientFactory ossClientFactory;
+    @Autowired
+    PickUpMapper pickUpMapper;
 
     @Override
     public Product selectById(String id) {
-        return baseMapper.selectById(id);
+        Product product = baseMapper.selectById(id);
+        String url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
+        product.setPicture(url);
+        return product;
     }
 
     @Override
-    public List<ProductDto> selectByPickUp(String id) {
+    public List<Product> selectByPickUp(String id) {
+        List<Product> products = baseMapper.selectByPickUp(id);
+        for (Product product : products) {
+            String url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
+            product.setPicture(url);
+        }
+        return products;
+    }
 
-        return null;
+    @Override
+    public void save(Product product, MultipartFile file) {
+        String filename = null;
+        if (file != null) {
+            filename = file.getOriginalFilename();
+            product.setPicture(filename);
+        }
+        product.setStatus(2);
+        String id = baseMapper.insertProduct(product);
+        if (file != null) {
+            File toFile = null;
+            try {
+                InputStream ins = file.getInputStream();
+                toFile = new File(filename);
+                inputStreamToFile(ins, toFile);
+                ins.close();
+                BufferedInputStream bis = new BufferedInputStream(new FileInputStream(toFile));
+                ByteArrayOutputStream imageByteArrayOS = new ByteArrayOutputStream();
+                IOUtils.copy(bis, imageByteArrayOS);
+                byte[] imageBytes = imageByteArrayOS.toByteArray();
+                OSSUtil.saveOssImage(imageBytes, picture, id, filename);
+            } catch (Exception e) {
+                log.error(e.getMessage());
+                toFile.delete();
+            }
+        }
+    }
+
+    @Override
+    public void update(Product product, MultipartFile file) {
+        String filename = null;
+        if (file != null) {
+            filename = file.getOriginalFilename();
+            product.setPicture(filename);
+        }
+        baseMapper.updateById(product);
+        if (file != null) {
+            File toFile = null;
+            try {
+                InputStream ins = file.getInputStream();
+                toFile = new File(filename);
+                inputStreamToFile(ins, toFile);
+                ins.close();
+                BufferedInputStream bis = new BufferedInputStream(new FileInputStream(toFile));
+                ByteArrayOutputStream imageByteArrayOS = new ByteArrayOutputStream();
+                IOUtils.copy(bis, imageByteArrayOS);
+                byte[] imageBytes = imageByteArrayOS.toByteArray();
+                OSSUtil.saveOssImage(imageBytes, picture, product.getId(), filename);
+            } catch (Exception e) {
+                log.error(e.getMessage());
+                toFile.delete();
+            }
+        }
     }
 
     @Override
     public String uploadFile(MultipartFile file) {
         File toFile = null;
         try {
-            long start = System.currentTimeMillis();
+
             String filename = file.getOriginalFilename();
             InputStream ins = file.getInputStream();
             toFile = new File(filename);
             inputStreamToFile(ins, toFile);
             ins.close();
-            Date date = new Date();
-            String dateTime = DateUtil.format(date,DateUtil.YYYY_MM_DD) ;
-
             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(toFile));
-            OSSPath formalOssPath = OSSPathBuilder.create().withDirectory(OSSClientFactory.Directory.FORMAL).
-                    withDataType(OSSClientFactory.DataType.CPS, dateTime).withFilename(filename).build();
-            SimpleOSSClient ossClient = ossClientFactory.createOSSClient();
-            String key = ossClient.save(formalOssPath, bis);
-            String url = ossClient.getUrl(key);
-            long end = System.currentTimeMillis();
-            log.debug("consume 耗时-> " + (end - start));
+            ByteArrayOutputStream imageByteArrayOS = new ByteArrayOutputStream();
+            IOUtils.copy(bis, imageByteArrayOS);
+            byte[] imageBytes = imageByteArrayOS.toByteArray();
+            OSSUtil.saveOssImage(imageBytes, picture, "100", filename);
+            String url = OSSUtil.getOssUrl("100", picture, filename);
             return url;
-        }catch (Exception e){
-          log.error(e.getMessage());
+        } catch (Exception e) {
+            log.error(e.getMessage());
             toFile.delete();
         }
-
-
         return null;
     }
 

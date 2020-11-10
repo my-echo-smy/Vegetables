@@ -11,8 +11,8 @@ import java.util.Date;
  * 订单表
  */
 @Data
-@TableName("user")
-public class Order {
+@TableName("mall_order")
+public class MallOrder {
     @TableId(type = IdType.UUID)
     private String id;
     /**

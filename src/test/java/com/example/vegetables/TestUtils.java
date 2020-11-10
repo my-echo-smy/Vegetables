@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author redstarstar, star.hong@gmail.com
- * @version 1.0
+ * smy
  */
 public class TestUtils {
 

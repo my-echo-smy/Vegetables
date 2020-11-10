@@ -13,7 +13,7 @@ import java.util.Date;
 @TableName("user")
 public class User {
     @TableId(type = IdType.UUID)
-    private Integer id;
+    private String id;
     /**
      * 用户名
      */

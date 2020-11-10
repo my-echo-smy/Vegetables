@@ -15,7 +15,7 @@ import java.util.Date;
 @TableName("product")
 public class Product implements Serializable {
     @TableId(type = IdType.UUID)
-    private Integer id;
+    private String id;
     /**
      * 名称
      */
@@ -50,6 +50,11 @@ public class Product implements Serializable {
      * 自提点id
      */
     private String pickUpId;
+    /**
+     * 1:上架
+     * 2：下架
+     */
+    private Integer status;
     /**
      * 已售
      */
