@@ -62,8 +62,8 @@ public class SimpleOSSClientTest {
     public void testSave() throws Exception {
         SimpleOSSClient ossClient = ossClientFactory.createOSSClient();
 
-     OSSUtil.saveOssImage(idCardImage, picture, "100", "image_id_card_front.jpg");
-        String url = OSSUtil.getOssUrl("100",picture,"image_id_card_front.jpg");
+     OSSUtil.saveOssImage(idCardImage, picture, "1", "image_id_card_front.jpg");
+        String url = OSSUtil.getOssUrl("1",picture,"image_id_card_front.jpg");
         System.out.println("ssssssssssssssssssssssss"+url);
         assertFalse(ossClient.isFileExist(temporaryOssPath));
 
