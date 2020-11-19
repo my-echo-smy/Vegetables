@@ -11,6 +11,6 @@ import java.util.List;
  * @author SMy
  */
 public interface ProductMapper extends BaseMapper<Product> {
-    List<Product> selectByPickUp(@Param("pick_up_id") String id);
+    List<Product> selectByPickUp(@Param("pick_up_id") String id,@Param("name") String name);
     String insertProduct(Product product);
 }

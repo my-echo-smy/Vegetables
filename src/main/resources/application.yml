@@ -3,7 +3,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://101.200.210.89:3306/vegetables?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: root@123456a
   redis:
     host: 101.200.210.89
     database: 0
@@ -20,8 +20,12 @@ fastdfs:
     host: http://192.168.91.128/
 
 aliyun:
-  access-key-id: LTAI4G2QqRwkyY9avJjdog3z
-  access-key-secret: pCWcTAZPjknYg8BojMdVnF774T8Yos
+  access-key-id: LTAI4G6iiVLeCeaY7nJjHVBw
+  access-key-secret: nDksUXaqe7BOYcitathOnYtSfSYo40
   oss:
     endpoint: http://oss-cn-beijing.aliyuncs.com
+#    endpoint: http://oss-cn-beijing-internal.aliyuncs.com
     bucket-name: vegetables-oss
+#  用户登录名称 test@1300473727095366.onaliyun.com
+#  AccessKey ID LTAI4G6iiVLeCeaY7nJjHVBw
+#  AccessKey Secret nDksUXaqe7BOYcitathOnYtSfSYo40

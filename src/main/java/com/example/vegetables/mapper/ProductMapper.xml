@@ -19,6 +19,7 @@
 
     <select id="selectByPickUp" resultMap="BaseResultMap">
         Select * from  product where  pick_up_id =#{pick_up_id} and status = '1'
+         and name LIKE CONCAT('%',#{name},'%')
     </select>
     <insert id="insertProduct" parameterType="com.example.vegetables.model.Product" useGeneratedKeys="true"
             keyProperty="id">

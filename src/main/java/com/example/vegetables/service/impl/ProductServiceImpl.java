@@ -36,17 +36,22 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Override
     public Product selectById(String id) {
         Product product = baseMapper.selectById(id);
-        String url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
-        product.setPicture(url);
+        if(product.getPicture()!=null){
+            String url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
+            product.setPicture(url);
+        }
+
         return product;
     }
 
     @Override
-    public List<Product> selectByPickUp(String id) {
-        List<Product> products = baseMapper.selectByPickUp(id);
+    public List<Product> selectByPickUp(String id,String name) {
+        List<Product> products = baseMapper.selectByPickUp(id,name);
         for (Product product : products) {
-            String url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
-            product.setPicture(url);
+            if(product.getPicture()!=null) {
+                String url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
+                product.setPicture(url);
+            }
         }
         return products;
     }

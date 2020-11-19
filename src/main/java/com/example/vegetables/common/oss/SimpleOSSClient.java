@@ -42,6 +42,7 @@ public class SimpleOSSClient {
     }
 
     public String save(OSSPath ossPath, InputStream is) {
+
         PutObjectResult result = ossClient.putObject(bucketName, ossPath.toString(), is);
         LOGGER.info("OSS|PUT_OBJECT|{}|{}", result.getRequestId(), ossPath.toString());
         return ossPath.toString();

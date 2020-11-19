@@ -46,9 +46,9 @@ public class ProductController {
     @ResponseBody
     @ApiOperation(value = "获取自取店下所有商品", notes = "")
     @GetMapping(value = "getProductList")
-    public ResponseData getProductList(@RequestParam("id") String pickUpId) {
+    public ResponseData getProductList(@RequestParam("id") String pickUpId,@RequestParam("name") String name) {
         try {
-            return new SuccessResponseData(productService.selectByPickUp(pickUpId));
+            return new SuccessResponseData(productService.selectByPickUp(pickUpId,name));
         } catch (Exception e) {
             return new ErrorResponseData("获取自取店下所有商品数据异常");
         }
