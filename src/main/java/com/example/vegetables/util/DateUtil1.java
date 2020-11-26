@@ -15,7 +15,7 @@ import java.util.GregorianCalendar;
 /**
  * smy
  */
-public class DateUtil {
+public class DateUtil1 {
     /**
      * 日期格式，年月日，用横杠分开，例如：2006-12-25，2008-08-08
      */
@@ -35,7 +35,7 @@ public class DateUtil {
     private static final long nm = 1000 * 60;
     private static final long ns = 1000;
 
-    public DateUtil() {
+    public DateUtil1() {
         GregorianCalendar gc = new GregorianCalendar();
         this.year = gc.get(Calendar.YEAR);
         this.month = gc.get(Calendar.MONTH) + 1;

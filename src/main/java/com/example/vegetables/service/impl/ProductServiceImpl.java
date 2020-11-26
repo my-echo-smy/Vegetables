@@ -1,7 +1,6 @@
 package com.example.vegetables.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.example.vegetables.common.ErrorResponseData;
 import com.example.vegetables.mapper.PickUpMapper;
 import com.example.vegetables.mapper.ProductMapper;
 import com.example.vegetables.model.Product;

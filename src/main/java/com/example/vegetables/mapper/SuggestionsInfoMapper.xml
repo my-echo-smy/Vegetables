@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vegetables.mapper.SuggestionsInfoMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.example.vegetables.model.SuggestionsInfo" >
+        <result column="staff_no" property="staffNo" />
+        <result column="employee_name" property="employeeName" />
+        <result column="org_unit" property="orgUnit" />
+        <result column="position_name" property="positionName" />
+        <result column="input_datetime" property="inputDatetime" />
+        <result column="checktype" property="checktype" />
+        <result column="dayTime" property="dayTime" />
+    </resultMap>
+
+    <select id="listName" resultType="java.lang.String">
+        select distinct employee_name from   suggestions_info
+    </select>
+
+    <select id="getByName" resultMap="BaseResultMap">
+        select * ,DATE_FORMAT(input_datetime, '%d') as dayTime
+        from   suggestions_info where employee_name =#{name}
+        and  DATE_FORMAT(input_datetime, '%Y-%m-%d') =#{time} limit 1
+    </select>
+</mapper>

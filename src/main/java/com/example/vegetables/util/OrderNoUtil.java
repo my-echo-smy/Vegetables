@@ -12,12 +12,12 @@ public class OrderNoUtil {
 
         try {
             //年份的后两位
-            Integer yy = DateUtil.getYY(date);
+            Integer yy = DateUtil1.getYY(date);
             StringBuilder year = new StringBuilder();
             year.append(yy);
             String subYear = year.substring(2, 4);
             //两位月份
-            String month = DateUtil.getMonth(date)+"";
+            String month = DateUtil1.getMonth(date)+"";
             if(month.length()<2){
                 month = "0"+month;
             }

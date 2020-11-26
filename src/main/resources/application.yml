@@ -19,6 +19,9 @@ fastdfs:
   nginx:
     host: http://192.168.91.128/
 
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 aliyun:
   access-key-id: LTAI4G6iiVLeCeaY7nJjHVBw
   access-key-secret: nDksUXaqe7BOYcitathOnYtSfSYo40
