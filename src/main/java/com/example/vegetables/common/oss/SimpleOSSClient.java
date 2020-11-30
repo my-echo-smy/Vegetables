@@ -42,8 +42,11 @@ public class SimpleOSSClient {
     }
 
     public String save(OSSPath ossPath, InputStream is) {
+        ObjectMetadata meta = new ObjectMetadata();
 
-        PutObjectResult result = ossClient.putObject(bucketName, ossPath.toString(), is);
+        meta.setContentType("image/jpg");
+        //  meta.setContentDisposition("attachment;"); 返回下载路径
+        PutObjectResult result = ossClient.putObject(bucketName, ossPath.toString(), is,meta);
         LOGGER.info("OSS|PUT_OBJECT|{}|{}", result.getRequestId(), ossPath.toString());
         return ossPath.toString();
     }
