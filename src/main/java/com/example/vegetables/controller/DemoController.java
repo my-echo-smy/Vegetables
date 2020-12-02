@@ -51,7 +51,7 @@ public class DemoController {
     }
 
     @ResponseBody
-    @ApiOperation(value = "单一文件上传测试demo", notes = "")
+    @ApiOperation(value = "单一文件上传测试demo", notes = "file：文件")
     @PostMapping(value = "uploadFile")
     public ResponseData uploadFile(HttpServletRequest request) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;

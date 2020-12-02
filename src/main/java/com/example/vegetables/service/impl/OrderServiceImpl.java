@@ -105,8 +105,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, MallOrder> implem
         List<SuggestionsInfoTotal> list=new ArrayList<>();
         for (String name : suggestionsInfos) {
             SuggestionsInfoTotal suggestionsInfoTotal=new SuggestionsInfoTotal();
-            Date d1 = sdf.parse("2020-08-01");//定义起始日期
-            Date d2 = sdf.parse("2020-09-01");//定义结束日期
+            Date d1 = sdf.parse("2020-10-01");//定义起始日期
+            Date d2 = sdf.parse("2020-11-01");//定义结束日期
             Calendar dd = Calendar.getInstance();//定义日期实例
             dd.setTime(d1);//设置日期起始时间
             List<String> timeList = new ArrayList<>();
@@ -135,7 +135,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, MallOrder> implem
 
         SXSSFWorkbook hb = new SXSSFWorkbook();
         List<String> headerList = Arrays.asList(header);
-        ExcelUtil.createExcel("8月考勤", headerList, hb);
+        ExcelUtil.createExcel("10月考勤", headerList, hb);
         int inetRowIndex = 2;
 
       for (SuggestionsInfoTotal suggestionsInfoTotal:list){
@@ -153,7 +153,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, MallOrder> implem
         }
 
         response.setContentType("application/vnd.ms-excel;charset=utf-8");
-        String zipFileName = "8月考勤.xls";
+        String zipFileName = "10月考勤.xls";
         response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(zipFileName, "UTF-8"));
         OutputStream outputStream = response.getOutputStream();
         hb.write(outputStream);

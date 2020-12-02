@@ -36,8 +36,14 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public Product selectById(String id) {
         Product product = baseMapper.selectById(id);
         if(product.getPicture()!=null){
-            String url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
-            product.setPicture(url);
+
+            product.setPicture(product.getPicture());
+            try{
+                String  url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
+                product.setPicture(url);
+            }catch (Exception e){
+                log.error(e.getMessage());
+            }
         }
 
         return product;
@@ -48,8 +54,14 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         List<Product> products = baseMapper.selectByPickUp(id,name);
         for (Product product : products) {
             if(product.getPicture()!=null) {
-                String url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
-                product.setPicture(url);
+                product.setPicture(product.getPicture());
+                try{
+                    String  url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
+                    product.setPicture(url);
+                }catch (Exception e){
+                    log.error(e.getMessage());
+                }
+
             }
         }
         return products;

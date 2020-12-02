@@ -35,7 +35,7 @@ public class OrderController {
     OrderService orderService;
 
     @ResponseBody
-    @ApiOperation(value = "获取订单详情", notes = "")
+    @ApiOperation(value = "获取订单详情", notes = "id： 订单id")
     @GetMapping(value = "getOrder")
     public ResponseData getOrder(@RequestParam("id") String orderId) {
         try {
@@ -46,7 +46,7 @@ public class OrderController {
     }
 
     @ResponseBody
-    @ApiOperation(value = "获取该用户下所有订单", notes = " id 用户id")
+    @ApiOperation(value = "获取该用户下所有订单", notes = " id： 用户id")
     @GetMapping(value = "getOrderList")
     public ResponseData getOrderList(@RequestParam("id") String userId) {
         try {

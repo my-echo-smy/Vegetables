@@ -33,7 +33,7 @@ public class ProductController {
     ProductService productService;
 
     @ResponseBody
-    @ApiOperation(value = "获取商品详情", notes = "")
+    @ApiOperation(value = "获取商品详情", notes = "id:商品id ")
     @GetMapping(value = "getProduct")
     public ResponseData getProduct(@RequestParam("id") String productId) {
         try {
@@ -44,7 +44,7 @@ public class ProductController {
     }
 
     @ResponseBody
-    @ApiOperation(value = "获取自取店下所有商品", notes = "")
+    @ApiOperation(value = "获取自取店下所有商品", notes = "id:自取点id name：模糊搜索商品名称 可为空")
     @GetMapping(value = "getProductList")
     public ResponseData getProductList(@RequestParam("id") String pickUpId,@RequestParam("name") String name) {
         try {
@@ -55,7 +55,7 @@ public class ProductController {
     }
 
     @ResponseBody
-    @ApiOperation(value = "添加商品", notes = "")
+    @ApiOperation(value = "添加商品", notes = " file：商品图片 ，body ：商品详情")
     @PostMapping(value = "saveProduct")
     public ResponseData saveProduct(HttpServletRequest request,  @RequestParam("body") String json) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -69,7 +69,7 @@ public class ProductController {
     }
 
     @ResponseBody
-    @ApiOperation(value = "修改商品", notes = "")
+    @ApiOperation(value = "修改商品", notes = " file：商品图片 ，body ：商品详情")
     @PostMapping(value = "updateProduct")
     public ResponseData updateProduct(HttpServletRequest request,  @RequestParam("body") String json) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;

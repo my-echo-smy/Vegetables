@@ -7,6 +7,7 @@
  */
 package com.example.vegetables.common.oss;
 
+import com.aliyun.oss.ClientConfiguration;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.Bucket;
 import com.aliyun.oss.model.LifecycleRule;
@@ -40,7 +41,10 @@ public class OSSClientFactory {
 
     @PostConstruct
     public void initOSSClient() {
-        ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
+        ClientConfiguration conf = new ClientConfiguration();
+        conf.setConnectionTimeout(5000);
+        conf.setMaxErrorRetry(3);
+        ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret,conf);
 
         // 构建Bucket，及相应规则
         boolean isBucketExist = ossClient.doesBucketExist(bucketName);
