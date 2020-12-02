@@ -7,6 +7,7 @@
         <result column="content" property="content" />
         <result column="title" property="title" />
         <result column="price" property="price" />
+        <result column="on_sale_price" property="onSalePrice" />
         <result column="number" property="number"/>
         <result column="type" property="type"/>
         <result column="picture" property="picture" />
@@ -18,12 +19,21 @@
     </resultMap>
 
     <select id="selectByPickUp" resultMap="BaseResultMap">
-        Select * from  product where  pick_up_id =#{pick_up_id} and status = '1'
+        Select * from  product
+        where  pick_up_id =#{pick_up_id} and status = '1' and typw !='4'
         <if test="name!=null">
             and name LIKE CONCAT('%',#{name},'%')
         </if>
-
     </select>
+
+    <select id="getOnSaleList" resultMap="BaseResultMap">
+        Select * from  product
+        where  pick_up_id =#{pick_up_id} and status = '1' and typw ='4'
+        <if test="name!=null">
+            and name LIKE CONCAT('%',#{name},'%')
+        </if>
+    </select>
+
     <insert id="insertProduct" parameterType="com.example.vegetables.model.Product" useGeneratedKeys="true"
             keyProperty="id">
     insert into product (Id, name, content,

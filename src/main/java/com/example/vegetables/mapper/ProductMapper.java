@@ -12,5 +12,7 @@ import java.util.List;
  */
 public interface ProductMapper extends BaseMapper<Product> {
     List<Product> selectByPickUp(@Param("pick_up_id") String id,@Param("name") String name);
+    List<Product> getOnSaleList(@Param("pick_up_id") String id,@Param("name") String name);
+
     String insertProduct(Product product);
 }

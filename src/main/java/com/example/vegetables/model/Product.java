@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -31,7 +32,11 @@ public class Product implements Serializable {
     /**
      * 价格
      */
-    private Double price;
+    private BigDecimal price;
+    /**
+     * 优惠价格
+     */
+    private BigDecimal onSalePrice;
     /**
      * 库存
      */
@@ -40,6 +45,7 @@ public class Product implements Serializable {
      * 分类 1：蔬菜水果
      * 2：酒水饮料
      * 3：副食产品
+     * 4:优惠
      */
     private Integer type;
     /**

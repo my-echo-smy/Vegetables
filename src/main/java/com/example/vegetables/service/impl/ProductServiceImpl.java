@@ -66,7 +66,23 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         }
         return products;
     }
+    @Override
+    public List<Product> getOnSaleList(String id,String name) {
+        List<Product> products = baseMapper.getOnSaleList(id,name);
+        for (Product product : products) {
+            if(product.getPicture()!=null) {
+                product.setPicture(product.getPicture());
+                try{
+                    String  url = OSSUtil.getOssUrl(product.getId(), picture, product.getPicture());
+                    product.setPicture(url);
+                }catch (Exception e){
+                    log.error(e.getMessage());
+                }
 
+            }
+        }
+        return products;
+    }
     @Override
     public void save(Product product, MultipartFile file) {
         String filename = null;

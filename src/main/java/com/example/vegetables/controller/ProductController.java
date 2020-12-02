@@ -42,13 +42,23 @@ public class ProductController {
             return new ErrorResponseData("获取商品详情数据异常");
         }
     }
+    @ResponseBody
+    @ApiOperation(value = "获取自取店下优惠商品", notes = "id:自取点id name：模糊搜索商品名称 可为空")
+    @GetMapping(value = "getOnSaleList")
+    public ResponseData getOnSaleList(@RequestParam("id") String pickUpId,@RequestParam(value = "name",required = false) String name) {
+        try {
+            return new SuccessResponseData(productService.selectByPickUp(pickUpId,name));
+        } catch (Exception e) {
+            return new ErrorResponseData("获取自取店下所有商品数据异常");
+        }
+    }
 
     @ResponseBody
     @ApiOperation(value = "获取自取店下所有商品", notes = "id:自取点id name：模糊搜索商品名称 可为空")
     @GetMapping(value = "getProductList")
-    public ResponseData getProductList(@RequestParam("id") String pickUpId,@RequestParam("name") String name) {
+    public ResponseData getProductList(@RequestParam("id") String pickUpId,@RequestParam(value = "name",required = false) String name) {
         try {
-            return new SuccessResponseData(productService.selectByPickUp(pickUpId,name));
+            return new SuccessResponseData(productService.getOnSaleList(pickUpId,name));
         } catch (Exception e) {
             return new ErrorResponseData("获取自取店下所有商品数据异常");
         }

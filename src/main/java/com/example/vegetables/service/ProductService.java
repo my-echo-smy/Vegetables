@@ -13,6 +13,7 @@ public interface ProductService extends IService<Product> {
     Product selectById(String id);
 
     List<Product> selectByPickUp(String id,String name);
+    List<Product> getOnSaleList(String id,String name);
 
     void save(Product product, MultipartFile file);
 
